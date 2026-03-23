@@ -4,16 +4,6 @@ argument-hint: "Feature folder name under specs/features/ (e.g. '001-github-logi
 agent: "✅ Task"
 ---
 
-Delegate entirely to the **✅ Task** agent.
-
 The feature to create tasks for is: **{{feature-name}}**
 
-Load the approved spec artifacts from the feature folder:
-
-- `specs/features/{{feature-name}}/*.md` — approved technical design (`DES-*` identifiers)
-
-Each task must be:
-
-- Small and independently executable
-- Traceable to a `REQ-*` and `DES-*` identifier
-- Include explicit **Done When** criteria
+Load the approved plan from the feature folder `specs/features/{{feature-name}}/plan.md` and break down the phases of the plan into small, independently executable implementation tasks. Each task should be traceable to a specific requirement (`REQ-*`) and design decision (`DES-*`) from the plan, and include explicit **Done When** criteria for verification.

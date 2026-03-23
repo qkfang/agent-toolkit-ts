@@ -6,12 +6,12 @@ agent: "agent"
 
 # 1. Load Spec Context
 
-Given the spec folder path or feature number in the user input (e.g. `specs/features/{feature-name}`), load all three spec files:
+Given the spec folder path or feature number in the user input (e.g. `specs/features/{feature-name}`), load all spec files:
 
 1. `{folder}/plan.md` — technical design decisions and architecture context
 2. `{folder}/tasks.md` — the source of truth for what to implement and in what order
 
-Also read every file listed under **Relevant Files** in `tasks.md` that is marked as a reference (do not modify reference files).
+Also read every file listed under **Relevant Files** in `plan.md` and `tasks.md` that is marked as a reference (do not modify reference files).
 
 # 2. Execute Each Task — In Order
 

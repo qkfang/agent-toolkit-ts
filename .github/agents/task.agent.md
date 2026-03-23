@@ -47,7 +47,9 @@ Phase ownership: This is Phase 2 of 2 (Task Planning). Your output must convert 
 - If `NNN` or `{feature-name}` is missing, ask one concise naming question before writing `tasks.md`.
 - Every task must include explicit requirement and design traceability identifiers using consistent tokens (for example: `REQ-1`, `DES-2.3`).
 - Always provide both outputs: (1) a scannable task plan in-chat and (2) the persisted file path where the same plan was saved.
-- Require an approved `plan.md` artifact containing both `REQ-*` and `DES-*` identifiers before final task plan output; if the plan is missing or unapproved, create a provisional task draft and flag blockers.
+- Require an approved `plan.md` artifact containing `REQ-*` identifiers before final task plan output.
+- Define `DES-*` identifiers as part of task planning in `tasks.md` (derived from approved plan architecture) and ensure they are used consistently across all tasks.
+- If `REQ-*` identifiers are missing or the plan is unapproved, create a provisional task draft and flag blockers.
 - Include objective, completion criteria, and verification expectation for every task.
 - Do not redefine requirements or redesign architecture in this phase; instead, raise change feedback to the planning phase.
 </rules>
@@ -88,6 +90,7 @@ Once context is clear, transform the approved planning output into a comprehensi
 The task plan should reflect:
 
 - Concrete coding tasks mapped to approved requirements and design components from `plan.md`
+- A task-scoped `DES-*` map defined in `tasks.md`, with each design token tied to approved plan architecture and used by downstream tasks
 - Clear task sequencing with explicit dependencies and parallelizable work
 - Task granularity suitable for incremental execution and validation
 - Files/components/symbols each task should create, modify, or verify
@@ -122,9 +125,9 @@ Keep iterating until explicit approval or handoff.
 - Allowed artifact: `specs/features/{NNN}-{feature-name}/tasks.md` only.
 - Required inputs from earlier phases:
   - Approved planning document (`plan.md`) with `REQ-*`
-  - Approved planning document (`plan.md`) with `DES-*`
 - Required output guarantees:
   - Every implementation task references at least one `REQ-*` and one `DES-*`
+  - `DES-*` identifiers are authored in `tasks.md` during this phase and remain stable within the task plan
   - Dependency chain and parallelizable groups are explicitly called out
   - Each task has a verifiable completion signal
 - Forbidden outputs in this phase:
