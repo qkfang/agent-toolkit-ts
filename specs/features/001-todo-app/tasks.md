@@ -44,14 +44,14 @@ Defined here; referenced consistently across all tasks below.
 
 _Prerequisite for all other phases._
 
-- [ ] 1.1 Install Zustand
+- [x] 1.1 Install Zustand
   - Run `bun add zustand` from the `web/` directory to add Zustand to `web/package.json`
   - Confirm `"zustand"` appears in the `dependencies` block of `web/package.json`
   - _Requirements: REQ-4, REQ-7_
   - _Design: DES-2_
   - **Done when:** `web/package.json` contains `zustand` in dependencies and `web/bun.lockb` (or `bun.lock`) is updated
 
-- [ ] 1.2 Create the Todo types module
+- [x] 1.2 Create the Todo types module
   - Create `web/features/todo/types.ts` exporting `Todo` interface and `FilterValue` type per the data model
   - `Todo`: `id: string`, `text: string`, `completed: boolean`, `createdAt: number`
   - `FilterValue`: `"all" | "active" | "completed"`
@@ -60,7 +60,7 @@ _Prerequisite for all other phases._
   - _Design: DES-1_
   - **Done when:** File exists, TypeScript reports no errors, both `Todo` and `FilterValue` are importable
 
-- [ ] 1.3 Create the Zustand store with persist middleware
+- [x] 1.3 Create the Zustand store with persist middleware
   - _Depends on 1.1 and 1.2_
   - Create `web/store/use-todo-store.ts`
   - Compose `subscribeWithSelector` (outer) wrapping `persist` (inner) wrapping the state factory
@@ -92,7 +92,7 @@ _Prerequisite for all other phases._
 
 _Parallel: 2.1 and 2.2 are independent of each other. Both depend on Phase 1 completing types._
 
-- [ ] 2.1 Create `checkbox.tsx` UI primitive
+- [x] 2.1 Create `checkbox.tsx` UI primitive
   - Create `web/components/ui/checkbox.tsx`
   - Use `@base-ui/react/checkbox` — exports `Checkbox.Root` and `Checkbox.Indicator`
   - Export a single `Checkbox` component accepting `checked`, `onCheckedChange`, `id`, `className`, and `disabled` props
@@ -103,7 +103,7 @@ _Parallel: 2.1 and 2.2 are independent of each other. Both depend on Phase 1 com
   - _Design: DES-4_
   - **Done when:** Component renders a styled, accessible checkbox in isolation; TypeScript no errors
 
-- [ ] 2.2 Create `input.tsx` UI primitive
+- [x] 2.2 Create `input.tsx` UI primitive
   - Create `web/components/ui/input.tsx`
   - Export a single `Input` component wrapping a native `<input>` element
   - Accept all standard `React.InputHTMLAttributes<HTMLInputElement>` props
@@ -129,7 +129,7 @@ _Parallel: 2.1 and 2.2 are independent of each other. Both depend on Phase 1 com
 
 _All tasks in this phase depend on Phase 1 and Phase 2 completing. 3.2 depends on 3.1. 3.3–3.6 are independent of each other except 3.6 which depends on all of 3.1–3.5._
 
-- [ ] 3.1 Create `todo-item.tsx`
+- [x] 3.1 Create `todo-item.tsx`
   - Create `web/features/todo/todo-item.tsx` as a named export `TodoItem`
   - Props: `todo: Todo`
   - Render: flex row with `gap-3 items-center`:
@@ -142,7 +142,7 @@ _All tasks in this phase depend on Phase 1 and Phase 2 completing. 3.2 depends o
 
   **Done when:** Component renders without TypeScript errors; clicking the checkbox calls `toggleTodo`; clicking delete calls `deleteTodo`
 
-- [ ] 3.2 Create `todo-list.tsx`
+- [x] 3.2 Create `todo-list.tsx`
   - _Depends on 3.1_
   - Create `web/features/todo/todo-list.tsx` as a named export `TodoList`
   - Read `todos` and `filter` from store using atomic selectors
@@ -158,7 +158,7 @@ _All tasks in this phase depend on Phase 1 and Phase 2 completing. 3.2 depends o
 
   **Done when:** Renders a list from store state; filter changes update the visible list
 
-- [ ] 3.3 Create `todo-input.tsx`
+- [x] 3.3 Create `todo-input.tsx`
   - Create `web/features/todo/todo-input.tsx` as a named export `TodoInput`
   - Local state (single `useState<string>`) for the controlled input value (ephemeral, justified exception to Zustand-default rule)
   - Submit handler: trims value, calls `addTodo(trimmedValue)`, clears input; no-ops on empty string
@@ -171,7 +171,7 @@ _All tasks in this phase depend on Phase 1 and Phase 2 completing. 3.2 depends o
 
   **Done when:** Typing and pressing Enter or clicking Add calls `addTodo`; input resets to empty after submit
 
-- [ ] 3.4 Create `todo-stats.tsx`
+- [x] 3.4 Create `todo-stats.tsx`
   - Create `web/features/todo/todo-stats.tsx` as a named export `TodoStats`
   - Read `todos` from store using atomic selector; derive:
     - `remainingCount = todos.filter(t => !t.completed).length`
@@ -185,7 +185,7 @@ _All tasks in this phase depend on Phase 1 and Phase 2 completing. 3.2 depends o
 
   **Done when:** "Clear completed" only appears when at least one completed todo exists; clicking it calls `clearCompleted`
 
-- [ ] 3.5 Create `todo-filter.tsx`
+- [x] 3.5 Create `todo-filter.tsx`
   - Create `web/features/todo/todo-filter.tsx` as a named export `TodoFilter`
   - Read `filter` from store using atomic selector
   - Render three `<button>` elements labelled "All", "Active", "Completed"; `onClick` calls `setFilter(value)`
@@ -197,7 +197,7 @@ _All tasks in this phase depend on Phase 1 and Phase 2 completing. 3.2 depends o
 
   **Done when:** Active filter tab is visually highlighted; selecting a tab calls `setFilter` and the change reflects in `TodoList`
 
-- [ ] 3.6 Compose `todo-page.tsx`
+- [x] 3.6 Compose `todo-page.tsx`
   - _Depends on 3.1, 3.2, 3.3, 3.4, 3.5_
   - Create `web/features/todo/todo-page.tsx` as a named export `TodoPage`
   - `"use client"` directive
@@ -243,7 +243,7 @@ _All tasks in this phase depend on Phase 1 and Phase 2 completing. 3.2 depends o
 
 _Depends on Phase 3 (specifically 3.6)._
 
-- [ ] 4.1 Create the `/todos` route module
+- [x] 4.1 Create the `/todos` route module
   - Create `web/app/todos/page.tsx`
   - `default` export function `TodosPage` (RSC — no `"use client"`)
   - Body: import `TodoPage` from `@/features/todo/todo-page` and render `<TodoPage />`
@@ -265,7 +265,7 @@ _Depends on Phase 3 (specifically 3.6)._
 
 ## Phase 5 — Final Verification
 
-- [ ] 5.1 Run lint and format checks
+- [x] 5.1 Run lint and format checks
   - Run `bun run --cwd web lint` — verify zero oxlint errors across all new files
   - Run `bun run --cwd web format` — verify no formatting issues
   - _Requirements: REQ-7_
